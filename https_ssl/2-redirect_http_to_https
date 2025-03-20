@@ -20,13 +20,10 @@ defaults
 frontend http_front
     bind *:80
     default_backend http_back
-
-frontend www-https
-    bind *:443 ssl crt /etc/haproxy/certs/www.larissa48.tech.pem
-    http-request add-header X-Forwarded-Proto https
+frontend https_front
+    bind *:443 ssl crt /etc/ssl/certs/www.larissa48.tech.pem
     default_backend http_back
-
 backend http_back
     balance roundrobin
-    server 6441-web-01 44.201.238.52:80 check
-    server 6441-web-02 54.157.252.190:80 check
+    server 6463-web-01 44.201.238.52:80 check
+    server 6463-web-02 54.157.252.190:80 check
